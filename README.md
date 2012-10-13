@@ -1,6 +1,6 @@
 <h4>RuqqJS is part of LibJS Project</h4>
 <p> 	
-	<a href='http://tenbits.github.com/LibJS/#ruqq'>-- @Reference --</a>
+	<a href='http://libjs.it/#ruqq'>-- @Reference --</a>
 	
 	<hr/>
 	
