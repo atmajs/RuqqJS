@@ -1,0 +1,30 @@
+{
+	"name": "ruqq",
+	"description": "LibJS: Dev Helpers Library",
+	"version": "0.4.0",
+	"homepage": "http://libjs.it/#/ruqq",
+	"contributors":[
+	],
+	"author": "Alex Kit <source.kit@gmail.com>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tenbits/RuqqJS.git"
+	},
+	"bugs": {
+		"url": "https://github.com/tenbits/RuqqJS/issues"
+	},
+	"licenses": [
+		"MIT"
+	],
+	"dependencies": {},
+	"devDependencies": {
+		"buster": "~0.6.3"
+	},
+	"scripts" : {
+        "test" : "node_modules/.bin/buster-test -r specification"
+    },
+	"keywords": [],
+	"engines" : {
+        "node" : "~0.8.9"
+    }
+}
