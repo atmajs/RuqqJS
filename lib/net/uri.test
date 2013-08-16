@@ -1,0 +1,79 @@
+include.inject('uri.js').done(function(){
+	
+	var URI = net.URI;
+
+	UTest({
+		'parse' : function(){
+			var	uri = new URI('c:/dev/file.js');
+
+			assert.equal(uri.protocol, 'file');
+			assert.equal(uri.host, '/c:');
+			assert.equal(uri.path, '/dev');
+			assert.equal(uri.file, 'file.js');
+			assert.equal(uri.extension, 'js');
+			
+			uri = new URI('file:///c:/dev/ijs-utest/bin/file.js');
+			assert.equal(uri.protocol, 'file');
+			assert.equal(uri.host, '/c:');
+			assert.equal(uri.path, '/dev/ijs-utest/bin');
+			assert.equal(uri.file, 'file.js');
+			assert.equal(uri.extension, 'js');
+			assert.equal(uri.toLocalFile(), 'c:/dev/ijs-utest/bin/file.js');
+			assert.equal(uri.toLocalDir(), 'c:/dev/ijs-utest/bin/');
+			assert.equal(uri.toDir(), 'file:///c:/dev/ijs-utest/bin/');
+			
+			
+			uri = new URI('c:/dev/file.js');
+			uri = uri.combine('foo/bar/run.exe');
+			assert.equal(uri.host, '/c:');
+			assert.equal(uri.path, '/dev/foo/bar');
+			assert.equal(uri.file, 'run.exe');
+			assert.equal(uri.extension, 'exe');
+			
+			uri = uri.combine('../../word.txt');
+			assert.equal(uri.host, '/c:');
+			assert.equal(uri.path, '/dev');
+			assert.equal(uri.file, 'word.txt');
+			assert.equal(uri.extension, 'txt');
+			
+			uri = uri.combine('/music/b.mp3');
+			assert.equal(uri.host, '/c:');
+			assert.equal(uri.path, '/music');
+			assert.equal(uri.file, 'b.mp3');
+			assert.equal(uri.extension, 'mp3');
+			
+			
+			uri = new URI('/c:/dev/');
+			uri = uri.combine('d:/x.ext');
+			assert.equal(uri.host, '/d:');
+			assert.equal(uri.path, '');
+			
+			uri = new URI('/home/user/node');
+			assert.equal(uri.file, 'node');
+			
+			uri = uri.combine('box');
+			assert.equal(uri.protocol, 'file');
+			assert.equal(uri.path, '/home/user');
+			assert.equal(uri.file, 'box');
+			
+			uri = new URI('/home/user/node/');
+			assert.equal(uri.file, null);
+			assert.equal(uri.path, '/home/user/node');
+			
+			uri = uri.combine('box/');
+			assert.equal(uri.path, '/home/user/node/box');
+			
+			
+			uri = new URI('file:///home/user');
+			assert.equal(uri.protocol, 'file');
+			assert.equal(uri.host, null);
+			assert.equal(uri.path, '/home');
+
+
+			uri = new net.URI('file:///home/travis/build/tenbits/utest/test/UTest.test');
+			assert.equal(uri.toLocalFile(), '/home/travis/build/tenbits/utest/test/UTest.test')
+			
+		}
+	})
+
+});
